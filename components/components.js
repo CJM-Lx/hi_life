@@ -1034,7 +1034,16 @@ var storeTpl = {
 			this.$router.push({name:"shopCar"});
 		},
 		addSp:function(val){  // 添加商品的id
-			this.cartSize++;
+			var _this = this;
+			axios.get("./data/sp01.json",{goodId:val})
+			.then(function(response){
+				if(response.data){
+					_this.cartSize++;
+				}
+			})
+			.catch(function(){
+				_this.$toast("添加失败");
+			});
 		},
 		toStoreDetail:function(val){
 			this.$router.push({name:"goodsDetail",query:{goodsId:val}});
@@ -1043,5 +1052,33 @@ var storeTpl = {
 }
 /* 商品详情页 */
 var goodsDetailTpl = {
-	template:'<div>商品详情页</div>'
+	template:'<div class="goods-detail">'
+			+'<header><i class="goods-back"></i><span><i class="goods-share"></i><i class="goods-collection"></i></span></header>'
+			+'<section class="goods-detail-contanier">'
+			+'<div class="goods-detail-banner"><img src="./image/store/store-banner.png"></div>'
+			+'<div class="goods-detail-mes">'
+			+'<div class="goods-name">茶点叉烧包</div>'
+			+'<small><span class="good-price">¥18.89</span><span class="good-sales">已售981件</span></small>'
+			+'</div>'
+			+'<section class="store-mess">'
+			+'<header>'
+			+'<div class="store-title">中国元素中餐厅</div><small>粤菜,自助晚餐</small></header>'
+			+'<div class="store-mess-content">'
+			+'<div class="address-icon"><i></i></div>'
+			+'<div class="address-text">'
+			+'<div class="store-address">深南大道9008号益田威斯汀酒店B1楼(近世界之窗)xxx大道</div>'
+			+'<div class="store-distance">距您<span>400米</span></div>'
+			+'</div>'
+			+'<div class="telphone"><i></i></div>'
+			+'</div>'
+			+'</section>'
+			+'<div class="good-summary">'
+			+'<header><span>商品详情</span></header>'
+			+'<section class="good-summary-content">'
+			+'<img src="./image/detail.png">'
+			+'</section>'
+			+'</div>'
+			+'</section>'
+			+'<footer><div class="addCart">加入购物车</div><div class="goPay">立即购买</div></footer>'
+			+'</div>'
 }
