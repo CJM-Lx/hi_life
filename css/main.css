@@ -1699,12 +1699,14 @@ small{
 /* 商品详情页 */
 .goods-detail{
 	height: 100%;
+	overflow: hidden;
 }
 .goods-detail>header{
 	clear: both;
 	height: .4rem;
 	width: 100%;
 	position: fixed;
+	z-index: 1;
 	padding: .05rem  .15rem;
 	background: rgba(0,0,0,0);
 }
